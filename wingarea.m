@@ -11,5 +11,7 @@ function area = wingarea(aircraft_type)
     fullscale = 360.5;
     area = fullscale / (225^2);
     return;
+  otherwise
+    error(sprintf('[ERROR] wingarea.m - invalid aircraft type entered (%s).', aircraft_type));
   end
 end
