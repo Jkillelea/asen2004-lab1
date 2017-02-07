@@ -168,7 +168,7 @@ for i = 1:numFile
 end
 
 % create structure for B787 Data
-B787 = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'Boeing 787');
+B787 = struct('P_atm', [], 'T_atm', [], 'rho_atm', [], 'V_air', [], 'q_pitot', [], 'AOA', [], 'N_force', [], 'A_force', [], 'M_pitch', [], 'P_valve', [], 'name', 'Boeing 787');
 
 if numFile>0
     B787.P_atm      =   vertcat(B787_temp(:).P_atm);
