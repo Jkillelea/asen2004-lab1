@@ -1,9 +1,8 @@
-[F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR] = ...
-	L1_readInput('./Data/Group Data Save Here');
+[F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR] = L1_readInput('./Data/Group Data Save Here');
 
-F16_CLEAN.S 	= wingarea('f16');
+F16_CLEAN.S 	 = wingarea('f16');
 F16_LOADED.S 	= wingarea('f16');
-B787.S 			= wingarea('b787');
+B787.S 			    = wingarea('b787');
 
 for i = 1:size(F16_CLEAN.P_atm,1);
 	[ F16_CLEAN.CL(i,:), F16_CLEAN.CD(i,:) ] = ...
