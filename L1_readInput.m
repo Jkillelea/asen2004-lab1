@@ -3,37 +3,37 @@ function [ F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR 
 % find the names of all the files in the data directory that name structure
 % for data
 
-F16_CLEAN_temp = dir(strcat(direc,'/F16_CLEAN*'));
+F16_CLEAN_temp = dir(strcat(direc, '/F16_CLEAN*'));
 
 % save the number of files as a variable for ease of use
-numFile = size(F16_CLEAN_temp,1);
+numFile = size(F16_CLEAN_temp, 1);
 
 % Read input for data files
 for i = 1:numFile
-    temp = csvread(strcat(direc,'/',F16_CLEAN_temp(i).name),1,0);
-    F16_CLEAN_temp(i).group  =   str2double(F16_CLEAN_temp(i).name(12:13));
+    temp = csvread(strcat(direc,'/',F16_CLEAN_temp(i).name), 1, 0);
+    F16_CLEAN_temp(i).group = str2double(F16_CLEAN_temp(i).name(12:13));
     for k = 1:30
-        F16_CLEAN_temp(i).P_atm(k,:)   =   mean(temp(20*k-19:20*k,1));     % [Pa]
-        F16_CLEAN_temp(i).T_atm(k,:)   =   mean(temp(20*k-19:20*k,2));     % [K]
-        F16_CLEAN_temp(i).rho_atm(k,:) =   mean(temp(20*k-19:20*k,3));     % [kg/m^3]
-        F16_CLEAN_temp(i).V_air(k,:)   =   mean(temp(20*k-19:20*k,4));     % [m/s]
-        F16_CLEAN_temp(i).q_pitot(k,:) =   mean(temp(20*k-19:20*k,5));     % [Pa]
-        F16_CLEAN_temp(i).AOA(k,:)     =   mean(temp(20*k-19:20*k,23));    % [degrees]
-        F16_CLEAN_temp(i).N_force(k,:) =   mean(temp(20*k-19:20*k,24));    % [N]
-        F16_CLEAN_temp(i).A_force(k,:) =   mean(temp(20*k-19:20*k,25));    % [N]
-        F16_CLEAN_temp(i).M_pitch(k,:) =   mean(temp(20*k-19:20*k,26));    % [Nm]
-        F16_CLEAN_temp(i).P_valve(k,:) =   mean(temp(20*k-19:20*k,7:22));  % [Pa]
+        F16_CLEAN_temp(i).P_atm(k,:)   =   mean(temp( (20*k-19):(20*k), 1));     % [Pa]
+        F16_CLEAN_temp(i).T_atm(k,:)   =   mean(temp( (20*k-19):(20*k), 2));     % [K]
+        F16_CLEAN_temp(i).rho_atm(k,:) =   mean(temp( (20*k-19):(20*k), 3));     % [kg/m^3]
+        F16_CLEAN_temp(i).V_air(k,:)   =   mean(temp( (20*k-19):(20*k), 4));     % [m/s]
+        F16_CLEAN_temp(i).q_pitot(k,:) =   mean(temp( (20*k-19):(20*k), 5));     % [Pa]
+        F16_CLEAN_temp(i).AOA(k,:)     =   mean(temp( (20*k-19):(20*k), 23));    % [degrees]
+        F16_CLEAN_temp(i).N_force(k,:) =   mean(temp( (20*k-19):(20*k), 24));    % [N]
+        F16_CLEAN_temp(i).A_force(k,:) =   mean(temp( (20*k-19):(20*k), 25));    % [N]
+        F16_CLEAN_temp(i).M_pitch(k,:) =   mean(temp( (20*k-19):(20*k), 26));    % [Nm]
+        F16_CLEAN_temp(i).P_valve(k,:) =   mean(temp( (20*k-19):(20*k), 7:22));  % [Pa]
 
-        F16_CLEAN_temp(i).ERR_P_atm(k,:)   =   2*std(temp(20*k-19:20*k,1));     % [Pa]
-        F16_CLEAN_temp(i).ERR_T_atm(k,:)   =   2*std(temp(20*k-19:20*k,2));     % [K]
-        F16_CLEAN_temp(i).ERR_rho_atm(k,:) =   2*std(temp(20*k-19:20*k,3));     % [kg/m^3]
-        F16_CLEAN_temp(i).ERR_V_air(k,:)   =   2*std(temp(20*k-19:20*k,4));     % [m/s]
-        F16_CLEAN_temp(i).ERR_q_pitot(k,:) =   2*std(temp(20*k-19:20*k,5));     % [Pa]
-        F16_CLEAN_temp(i).ERR_AOA(k,:)     =   2*std(temp(20*k-19:20*k,23));    % [degrees]
-        F16_CLEAN_temp(i).ERR_N_force(k,:) =   2*std(temp(20*k-19:20*k,24));    % [N]
-        F16_CLEAN_temp(i).ERR_A_force(k,:) =   2*std(temp(20*k-19:20*k,25));    % [N]
-        F16_CLEAN_temp(i).ERR_M_pitch(k,:) =   2*std(temp(20*k-19:20*k,26));    % [Nm]
-        F16_CLEAN_temp(i).ERR_P_valve(k,:) =   2*std(temp(20*k-19:20*k,7:22));  % [Pa]
+        F16_CLEAN_temp(i).ERR_P_atm(k,:)   =   2*std(temp( (20*k-19):(20*k), 1));     % [Pa]
+        F16_CLEAN_temp(i).ERR_T_atm(k,:)   =   2*std(temp( (20*k-19):(20*k), 2));     % [K]
+        F16_CLEAN_temp(i).ERR_rho_atm(k,:) =   2*std(temp( (20*k-19):(20*k), 3));     % [kg/m^3]
+        F16_CLEAN_temp(i).ERR_V_air(k,:)   =   2*std(temp( (20*k-19):(20*k), 4));     % [m/s]
+        F16_CLEAN_temp(i).ERR_q_pitot(k,:) =   2*std(temp( (20*k-19):(20*k), 5));     % [Pa]
+        F16_CLEAN_temp(i).ERR_AOA(k,:)     =   2*std(temp( (20*k-19):(20*k), 23));    % [degrees]
+        F16_CLEAN_temp(i).ERR_N_force(k,:) =   2*std(temp( (20*k-19):(20*k), 24));    % [N]
+        F16_CLEAN_temp(i).ERR_A_force(k,:) =   2*std(temp( (20*k-19):(20*k), 25));    % [N]
+        F16_CLEAN_temp(i).ERR_M_pitch(k,:) =   2*std(temp( (20*k-19):(20*k), 26));    % [Nm]
+        F16_CLEAN_temp(i).ERR_P_valve(k,:) =   2*std(temp( (20*k-19):(20*k), 7:22));  % [Pa]
     end
     %figure
     %plot(F16_CLEAN_temp(i).N_force)
@@ -43,7 +43,7 @@ end
 % create structure for F16_CLEAN Data
 F16_CLEAN = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[]);
 
-if numFile>0
+if numFile > 0
     F16_CLEAN.P_atm      =   vertcat(F16_CLEAN_temp(:).P_atm);
     F16_CLEAN.T_atm      =   vertcat(F16_CLEAN_temp(:).T_atm);
     F16_CLEAN.rho_atm    =   vertcat(F16_CLEAN_temp(:).rho_atm);
