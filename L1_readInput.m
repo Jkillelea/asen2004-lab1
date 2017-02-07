@@ -35,15 +35,12 @@ for i = 1:numFile
         F16_CLEAN_temp(i).ERR_M_pitch(k,:) =   2*std(temp(20*k-19:20*k,26));    % [Nm]
         F16_CLEAN_temp(i).ERR_P_valve(k,:) =   2*std(temp(20*k-19:20*k,7:22));  % [Pa]
     end
-    %figure
-    %plot(F16_CLEAN_temp(i).N_force)
-    %title(F16_CLEAN_temp(i).group)
 end
 
 % create structure for F16_CLEAN Data
 F16_CLEAN = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'F-16 Clean Configuration');
 
-if numFile>0
+if numFile > 0
     F16_CLEAN.P_atm      =   vertcat(F16_CLEAN_temp(:).P_atm);
     F16_CLEAN.T_atm      =   vertcat(F16_CLEAN_temp(:).T_atm);
     F16_CLEAN.rho_atm    =   vertcat(F16_CLEAN_temp(:).rho_atm);
