@@ -41,7 +41,7 @@ for i = 1:numFile
 end
 
 % create structure for F16_CLEAN Data
-F16_CLEAN = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[]);
+F16_CLEAN = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'F-16 Clean Configuration');
 
 if numFile>0
     F16_CLEAN.P_atm      =   vertcat(F16_CLEAN_temp(:).P_atm);
@@ -106,7 +106,7 @@ for i = 1:numFile
 end
 
 % create structure for F16_LOADED Data
-F16_LOADED = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[]);
+F16_LOADED = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'F-16 Loaded Configuration');
 
 if numFile>0
     F16_LOADED.P_atm      =   vertcat(F16_LOADED_temp(:).P_atm);
@@ -171,7 +171,7 @@ for i = 1:numFile
 end
 
 % create structure for B787 Data
-B787 = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[]);
+B787 = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'Boeing 787');
 
 if numFile>0
     B787.P_atm      =   vertcat(B787_temp(:).P_atm);
