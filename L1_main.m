@@ -30,24 +30,21 @@ for i = 1:size(B787.P_atm,1);
 																							B787.S);
 end
 
-F16_CLEAN.I  = F16_CLEAN.V_air  > 15;
-F16_LOADED.I = F16_LOADED.V_air > 15;
-B787.I  	   = B787.V_air       > 15;
-
 airplanes = [{F16_CLEAN}, {F16_LOADED}, {B787}];
 
 for i = 1:length(airplanes)
   airplane = airplanes{i};
+	select   = airplane.V_air > 15;
 
 	if sum(size(airplane.P_atm)) > 0
 		figure; % plot CL
-		plot(airplane.AOA(airplane.I), airplane.CL(airplane.I), '.', 'MarkerSize', 12)
+		plot(airplane.AOA(select), airplane.CL(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Lift Coefficient')
 		title(airplane.name)
 
 		figure; % plot CD
-		plot(airplane.AOA(airplane.I), airplane.CD(airplane.I), '.', 'MarkerSize', 12)
+		plot(airplane.AOA(select), airplane.CD(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Drag Coefficient')
 		title(airplane.name)
