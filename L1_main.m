@@ -46,7 +46,7 @@ end
 
 for i = 1:length(airplanes)
   airplane = airplanes{i};
-	select   = airplane.V_air > 15;
+	select   = airplane.V_air > 10;
 
 	if sum(size(airplane.P_atm)) > 0
 		figure; hold on; % plot CL
@@ -55,11 +55,15 @@ for i = 1:length(airplanes)
 		ylabel('Lift Coefficient')
 		title([airplane.name ' CL vs \alpha'])
 
+    print(['./graphs/' airplane.name 'cl-alpha'],'-djpeg','-noui') % relatives paths are okay since data is on a relative path. Otherwise the data reading failes and nothing is saved
+
 		figure; hold on; % plot CD
 		plot(airplane.AOA(select), airplane.CD(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Drag Coefficient')
 		title([airplane.name ' CD vs \alpha'])
+
+    print(['./graphs/' airplane.name 'cd-alpha'],'-djpeg','-noui')
 
 		figure; hold on; % plot CD
 		plot(airplane.CL(select), airplane.CD(select), '.', 'MarkerSize', 12)
@@ -67,11 +71,15 @@ for i = 1:length(airplanes)
     ylabel('Drag Coefficient')
 		title([airplane.name ' Drag Polar'])
 
+    print(['./graphs/' airplane.name 'cd-cl'],'-djpeg','-noui')
+
 		figure; hold on; % plot CM
 		plot(airplane.AOA(select), airplane.CM(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Moment Coefficient')
 		title([airplane.name ' CM vs \alpha'])
+
+    print(['./graphs/' airplane.name 'cm-alpha'],'-djpeg','-noui')
 
   else
     disp(['skipping ' airplane.name]);
