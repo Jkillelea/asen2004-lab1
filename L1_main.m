@@ -55,7 +55,7 @@ for i = 1:length(airplanes)
 		ylabel('Lift Coefficient')
 		title([airplane.name ' CL vs \alpha'])
 
-    print(['./graphs/' airplane.name 'cl-alpha'],'-djpeg','-noui') % relatives paths are okay since data is on a relative path. Otherwise the data reading failes and nothing is saved
+    print(['./graphs/' airplane.name ' CL vs alpha'],'-djpeg','-noui') % relatives paths are okay since data is on a relative path. Otherwise the data reading failes and nothing is saved
 
 		figure; hold on; % plot CD
 		plot(airplane.AOA(select), airplane.CD(select), '.', 'MarkerSize', 12)
@@ -63,7 +63,7 @@ for i = 1:length(airplanes)
 		ylabel('Drag Coefficient')
 		title([airplane.name ' CD vs \alpha'])
 
-    print(['./graphs/' airplane.name 'cd-alpha'],'-djpeg','-noui')
+    print(['./graphs/' airplane.name ' CD vs alpha'],'-djpeg','-noui')
 
 		figure; hold on; % plot CD
 		plot(airplane.CL(select), airplane.CD(select), '.', 'MarkerSize', 12)
@@ -71,7 +71,7 @@ for i = 1:length(airplanes)
     ylabel('Drag Coefficient')
 		title([airplane.name ' Drag Polar'])
 
-    print(['./graphs/' airplane.name 'cd-cl'],'-djpeg','-noui')
+    print(['./graphs/' airplane.name ' Drag Polar'],'-djpeg','-noui')
 
 		figure; hold on; % plot CM
 		plot(airplane.AOA(select), airplane.CM(select), '.', 'MarkerSize', 12)
@@ -79,7 +79,7 @@ for i = 1:length(airplanes)
 		ylabel('Moment Coefficient')
 		title([airplane.name ' CM vs \alpha'])
 
-    print(['./graphs/' airplane.name 'cm-alpha'],'-djpeg','-noui')
+    print(['./graphs/' airplane.name ' CM vs alpha'],'-djpeg','-noui')
 
   else
     disp(['skipping ' airplane.name]);
