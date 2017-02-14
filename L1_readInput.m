@@ -1,9 +1,10 @@
 function [ F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR ] = L1_readInput( direc )
 
+SELECT_MINIMUM_AIRSPEED = 15; % minimum airspeed. Otherwise throw out the data
+
 % find the names of all the files in the data directory that name structure
 % for data
-
-F16_CLEAN_temp = dir(strcat(direc,'/F16_CLEAN*'));
+F16_CLEAN_temp = dir(strcat(direc,'/F16_CLEAN_G*'));
 
 % save the number of files as a variable for ease of use
 numFile = size(F16_CLEAN_temp,1);
@@ -38,9 +39,20 @@ for i = 1:numFile
 end
 
 % create structure for F16_CLEAN Data
-F16_CLEAN = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'F-16 Clean Configuration');
+F16_CLEAN = struct(...
+    'P_atm',[], ...
+    'T_atm',[], ...
+    'rho_atm',[], ...
+    'V_air',[], ...
+    'q_pitot',[], ...
+    'AOA',[], ...
+    'N_force',[], ...
+    'A_force',[], ...
+    'M_pitch',[], ...
+    'P_valve',[] ...
+    ,'name','F16 Clean Configuration');
 
-if numFile > 0
+if numFile>0
     F16_CLEAN.P_atm      =   vertcat(F16_CLEAN_temp(:).P_atm);
     F16_CLEAN.T_atm      =   vertcat(F16_CLEAN_temp(:).T_atm);
     F16_CLEAN.rho_atm    =   vertcat(F16_CLEAN_temp(:).rho_atm);
@@ -66,9 +78,22 @@ else
     F16_CLEAN_ERR = 0;
 end
 
+I = F16_CLEAN.V_air  > SELECT_MINIMUM_AIRSPEED;
+
+F16_CLEAN.P_atm   =   F16_CLEAN.P_atm(I);
+F16_CLEAN.T_atm   =   F16_CLEAN.T_atm(I);
+F16_CLEAN.rho_atm =   F16_CLEAN.rho_atm(I);
+F16_CLEAN.V_air   =   F16_CLEAN.V_air(I);
+F16_CLEAN.q_pitot =   F16_CLEAN.q_pitot(I);
+F16_CLEAN.AOA     =   F16_CLEAN.AOA(I);
+F16_CLEAN.N_force =   F16_CLEAN.N_force(I);
+F16_CLEAN.A_force =   F16_CLEAN.A_force(I);
+F16_CLEAN.M_pitch =   F16_CLEAN.M_pitch(I);
+F16_CLEAN.P_valve =   F16_CLEAN.P_valve(I);
+
 % repeat input for loaded F16
 
-F16_LOADED_temp = dir(strcat(direc,'/F16_LOADED*'));
+F16_LOADED_temp = dir(strcat(direc,'/F16_LOADED_G*'));
 
 % save the number of files as a variable for ease of use
 numFile = size(F16_LOADED_temp,1);
@@ -103,7 +128,18 @@ for i = 1:numFile
 end
 
 % create structure for F16_LOADED Data
-F16_LOADED = struct('P_atm',[],'T_atm',[],'rho_atm',[],'V_air',[],'q_pitot',[],'AOA',[],'N_force',[],'A_force',[],'M_pitch',[],'P_valve',[], 'name', 'F-16 Loaded Configuration');
+F16_LOADED = struct(...
+    'P_atm',[], ...
+    'T_atm',[], ...
+    'rho_atm',[], ...
+    'V_air',[], ...
+    'q_pitot',[], ...
+    'AOA',[], ...
+    'N_force',[], ...
+    'A_force',[], ...
+    'M_pitch',[], ...
+    'P_valve',[] ...
+    ,'name','F16 Loaded Configuration');
 
 if numFile>0
     F16_LOADED.P_atm      =   vertcat(F16_LOADED_temp(:).P_atm);
@@ -131,9 +167,22 @@ else
     F16_LOADED_ERR = 0;
 end
 
-% repeat input for 787
+I = F16_LOADED.V_air  > SELECT_MINIMUM_AIRSPEED;
 
-B787_temp = dir(strcat(direc,'/787*'));
+F16_LOADED.P_atm   =   F16_LOADED.P_atm(I);
+F16_LOADED.T_atm   =   F16_LOADED.T_atm(I);
+F16_LOADED.rho_atm =   F16_LOADED.rho_atm(I);
+F16_LOADED.V_air   =   F16_LOADED.V_air(I);
+F16_LOADED.q_pitot =   F16_LOADED.q_pitot(I);
+F16_LOADED.AOA     =   F16_LOADED.AOA(I);
+F16_LOADED.N_force =   F16_LOADED.N_force(I);
+F16_LOADED.A_force =   F16_LOADED.A_force(I);
+F16_LOADED.M_pitch =   F16_LOADED.M_pitch(I);
+F16_LOADED.P_valve =   F16_LOADED.P_valve(I);
+
+
+% repeat input for 787
+B787_temp = dir(strcat(direc,'/787_G*'));
 
 % save the number of files as a variable for ease of use
 numFile = size(B787_temp,1);
@@ -168,7 +217,18 @@ for i = 1:numFile
 end
 
 % create structure for B787 Data
-B787 = struct('P_atm', [], 'T_atm', [], 'rho_atm', [], 'V_air', [], 'q_pitot', [], 'AOA', [], 'N_force', [], 'A_force', [], 'M_pitch', [], 'P_valve', [], 'name', 'Boeing 787');
+B787 = struct(...
+    'P_atm',   [], ...
+    'T_atm',   [], ...
+    'rho_atm', [], ...
+    'V_air',   [], ...
+    'q_pitot', [], ...
+    'AOA',     [], ...
+    'N_force', [], ...
+    'A_force', [], ...
+    'M_pitch', [], ...
+    'P_valve', [], ...
+    'name', 'Boeing 787 Clean Configuration');
 
 if numFile>0
     B787.P_atm      =   vertcat(B787_temp(:).P_atm);
@@ -196,4 +256,16 @@ else
     B787_ERR = 0;
 end
 
+I = B787.V_air  > SELECT_MINIMUM_AIRSPEED;
+
+B787.P_atm   =   B787.P_atm(I);
+B787.T_atm   =   B787.T_atm(I);
+B787.rho_atm =   B787.rho_atm(I);
+B787.V_air   =   B787.V_air(I);
+B787.q_pitot =   B787.q_pitot(I);
+B787.AOA     =   B787.AOA(I);
+B787.N_force =   B787.N_force(I);
+B787.A_force =   B787.A_force(I);
+B787.M_pitch =   B787.M_pitch(I);
+B787.P_valve =   B787.P_valve(I);
 end
