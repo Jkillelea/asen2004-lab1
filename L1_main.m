@@ -9,14 +9,21 @@ F16_CLEAN.S  = wingarea('f16');
 F16_LOADED.S = wingarea('f16');
 B787.S       = wingarea('b787');
 
-F16_CLEAN.c  = 1; % [m]
-F16_LOADED.c = 1; % [m]
-B787.c  	   = 1; % [m]
-
 F16_CLEAN.A  = 14.4*10^-3; % [m]
 F16_LOADED.A = 15.5*10^-3; % [m]
 B787.A  	   = 63.0*10^-3; % [m]
 
+% [ F16_CLEAN.S, F16_CLEAN.b ]  	= wingarea('f16');
+% [ F16_LOADED.S, F16_LOADED.b ]	= wingarea('f16');
+% [ B787.S, B787.b ]       		    = wingarea('b787');
+
+F16_CLEAN.lambda  = (23.52/79.02)*10^-3; % [m]
+F16_LOADED.lambda = (23.52/79.02)*10^-3; % [m]
+B787.lambda       = (0/53.18)*10^-3; % [m]
+
+F16_CLEAN.c       = (2/3)*(79.02*10^-3)*((F16_CLEAN.lambda^2 + F16_CLEAN.lambda + 1)/(F16_CLEAN.lambda + 1)); % [m]
+F16_LOADED.c      = (2/3)*(79.02*10^-3)*((F16_LOADED.lambda^2 + F16_LOADED.lambda + 1)/(F16_LOADED.lambda + 1)); % [m]
+B787.c            = (2/3)*(53.18*10^-3)*((B787.lambda^2 + B787.lambda + 1)/(B787.lambda + 1)); % [m]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RE-FORMATTING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 airplanes = [{F16_CLEAN}, {F16_LOADED}, {B787}];
