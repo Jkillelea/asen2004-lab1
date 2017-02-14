@@ -1,4 +1,4 @@
-clear all; clc;
+clear all; close all; clc;
 format shortG
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INITIALIZE GIVEN DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,7 +24,7 @@ airplanes = [{F16_CLEAN}, {F16_LOADED}, {B787}];
 
 for i = 1:length(airplanes) % iterate over list of airplanes
   airplane = airplanes{i};
-  
+
 	for j = 1:size(airplane.P_atm, 1) % calculate CL, CD, and CM
     [airplane.CL(j, :), airplane.CD(j, :)] = L1_calcLD(airplane.AOA(j), ...
                                                        airplane.N_force(j), ...
@@ -49,22 +49,31 @@ for i = 1:length(airplanes)
 	select   = airplane.V_air > 15;
 
 	if sum(size(airplane.P_atm)) > 0
-		figure; % plot CL
+		figure; hold on; % plot CL
 		plot(airplane.AOA(select), airplane.CL(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Lift Coefficient')
-		title(airplane.name)
+		title([airplane.name ' CL vs \alpha'])
 
-		figure; % plot CD
+		figure; hold on; % plot CD
 		plot(airplane.AOA(select), airplane.CD(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Drag Coefficient')
-		title(airplane.name)
+		title([airplane.name ' CD vs \alpha'])
 
-		figure; % plot CM
+		figure; hold on; % plot CD
+		plot(airplane.CL(select), airplane.CD(select), '.', 'MarkerSize', 12)
+    xlabel('Lift Coefficient');
+    ylabel('Drag Coefficient')
+		title([airplane.name ' Drag Polar'])
+
+		figure; hold on; % plot CM
 		plot(airplane.AOA(select), airplane.CM(select), '.', 'MarkerSize', 12)
 		xlabel('Angle of Attack, \alpha [^\circ degrees]')
 		ylabel('Moment Coefficient')
-		title(airplane.name)
+		title([airplane.name ' CM vs \alpha'])
+
+  else
+    disp(['skipping ' airplane.name]);
 	end
 end
