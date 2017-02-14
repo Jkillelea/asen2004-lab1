@@ -3,6 +3,7 @@ format shortG
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INITIALIZE GIVEN DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR] = L1_readInput('./data');
+mkdir('./graphs');
 
 F16_CLEAN.S  = wingarea('f16');
 F16_LOADED.S = wingarea('f16');
