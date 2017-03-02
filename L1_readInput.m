@@ -1,4 +1,8 @@
 function [ F16_CLEAN, F16_LOADED, B787, F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR ] = L1_readInput( direc )
+% ASEN 2004 LAB 1 GROUP 34 SPRING 2017
+% PARAMS: direc => type string, path to directory containting the data, which are CSV files
+% RETURNS: F16_CLEAN, F16_LOADED, B787 => structs containting the relevant data on each aircraft
+% F16_CLEAN_ERR, F16_LOADED_ERR, B787_ERR => structs containting data on the errors in each measurement
 
 SELECT_MINIMUM_AIRSPEED = 15; % minimum airspeed. Otherwise throw out the data
 

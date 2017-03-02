@@ -1,4 +1,7 @@
 function area = wingarea(aircraft_type)
+  % ASEN 2004 LAB 1 GROUP 34 SPRING 2017
+  % PARAMS: aircraft_type => type string, either 'f16' or 'b787'. Other values will throw an error.
+  % RETURNS: area => type double, the wing area of the scaled model.
   % calculates the wing area of each model (not full-size)
   switch aircraft_type
   case 'f16'

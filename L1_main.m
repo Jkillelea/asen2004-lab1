@@ -1,4 +1,10 @@
-clear all; close all; clc;
+% ASEN 2004 LAB 1 GROUP 34 SPRING 2017
+% PARAMS: none - this is the main script
+% RETURNS: none - this is the main script
+% This script handles loading the experimental data, analyzing it (calculating CL, CD, ect),
+% plotting the results, and saving those images to the folder './graphs/'
+
+clear; close all; clc;
 format shortG
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INITIALIZE GIVEN DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -12,10 +18,6 @@ B787.S       = wingarea('b787');
 F16_CLEAN.A  = 14.4*10^-3; % [m]
 F16_LOADED.A = 15.5*10^-3; % [m]
 B787.A  	   = 63.0*10^-3; % [m]
-
-% [ F16_CLEAN.S, F16_CLEAN.b ]  	= wingarea('f16');
-% [ F16_LOADED.S, F16_LOADED.b ]	= wingarea('f16');
-% [ B787.S, B787.b ]       		    = wingarea('b787');
 
 F16_CLEAN.lambda  = (23.52/79.02)*10^-3; % [m]
 F16_LOADED.lambda = (23.52/79.02)*10^-3; % [m]
