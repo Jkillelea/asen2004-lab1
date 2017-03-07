@@ -57,6 +57,10 @@ end
 for i = 1:length(airplanes)
   airplane = airplanes{i};
 
+  [full_landing_speed, scale_landing_speed] = landing_speed(airplane);
+  fprintf('The %s has a landing speed of %.0f for the full scale, %.0f for the model. [m/s]\n', airplane.name, full_landing_speed, scale_landing_speed);
+  fprintf('LD max for the %s model: %f\n', airplane.name, LD_max(airplane));
+
 	if sum(size(airplane.P_atm)) > 0
 		figure; hold on; % plot CL
 		plot(airplane.AOA, airplane.CL, '.', 'MarkerSize', 12)

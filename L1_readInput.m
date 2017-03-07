@@ -56,7 +56,7 @@ F16_CLEAN = struct(...
     'P_valve',[] ...
     ,'name','F16 Clean Configuration');
 
-if numFile>0
+if numFile > 0
     F16_CLEAN.P_atm      =   vertcat(F16_CLEAN_temp(:).P_atm);
     F16_CLEAN.T_atm      =   vertcat(F16_CLEAN_temp(:).T_atm);
     F16_CLEAN.rho_atm    =   vertcat(F16_CLEAN_temp(:).rho_atm);
@@ -234,7 +234,7 @@ B787 = struct(...
     'P_valve', [], ...
     'name', 'Boeing 787 Clean Configuration');
 
-if numFile>0
+if numFile > 0
     B787.P_atm      =   vertcat(B787_temp(:).P_atm);
     B787.T_atm      =   vertcat(B787_temp(:).T_atm);
     B787.rho_atm    =   vertcat(B787_temp(:).rho_atm);
